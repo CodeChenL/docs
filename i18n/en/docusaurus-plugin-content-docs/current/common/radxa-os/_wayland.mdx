@@ -1,0 +1,29 @@
+Wayland is a replacement for the X11 window system protocol and architecture, Wayland is a replacement for the X11 window system protocol and architecture, and often has better graphics performance. However, since Rockchip Debian SDK does not provide corresponding support, Radxa OS also disables GDM's Wayland mode by default. If you want to use Wayland to run graphics software/desktop, you can follow the steps below.
+
+:::warning
+Some Rockchip video/graphic software stacks are not compatible with Wayland, which may cause unexpected results such as performance degradation/graphical distortion.
+:::
+
+Edit `/etc/gdm3/daemon.conf`, uncomment `WaylandEnable` and set it to `true`
+
+```bash
+sudo nano /etc/gdm3/daemon.conf
+```
+
+Summary of partial changes to `/etc/gdm3/daemon.conf`:
+
+```
+[daemon]
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=true
+```
+
+Reboot
+
+```bash
+sudo reboot
+```
+
+After restart, you can select the Wayland session in the lower right corner during login:
+
+![wayland_gdm.webp](/img/common/wayland/wayland_gdm.webp)
